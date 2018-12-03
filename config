@@ -46,7 +46,7 @@ bindsym $mod+d exec dmenu_run
 bindsym $mod+j focus left
 bindsym $mod+k focus down
 bindsym $mod+l focus up
-bindsym $mod+ccedilla focus right
+bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -58,7 +58,7 @@ bindsym $mod+Right focus right
 bindsym $mod+Shift+j move left
 bindsym $mod+Shift+k move down
 bindsym $mod+Shift+l move up
-bindsym $mod+Shift+ccedilla move right
+bindsym $mod+Shift+semicolon move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -134,9 +134,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-
-bindsym $mod+Shift+e exec i3-msg exit
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -149,7 +147,7 @@ mode "resize" {
         bindsym j resize shrink width 10 px or 10 ppt
         bindsym k resize grow height 10 px or 10 ppt
         bindsym l resize shrink height 10 px or 10 ppt
-        bindsym ccedilla resize grow width 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -170,10 +168,10 @@ bindsym $mod+r mode "resize"
 default_border pixel 0
 #for_window [class="^.*"] border pixel 0
 
-gaps inner 5
+gaps inner 35
 gaps outer 5
 
-set $mode_gaps Gaps: (o)uter, (i)nner, (h)orizontal, (v)ertical, (t)op, (r)ight, (b)ottom, (l)eft
+set $mode_gaps Gaps: (o)uter, (i)nner
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
 set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
 
@@ -218,5 +216,10 @@ mode "$mode_gaps_inner" {
 #bar {
 #        status_command i3status
 #}
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id killall -q polybar; polybar -r example
+exec_always --no-startup-id wal -i /home/lucas/Downloads/wallpaper.jpg
 exec_always --no-startup-id nitrogen --restore
+exec_always --no-startup-id killall -q compton; compton --config /etc/xdg/compton.conf
+#exec_always --no-startup-id wal -i /home/lucas/Downloads/teste.jpg
